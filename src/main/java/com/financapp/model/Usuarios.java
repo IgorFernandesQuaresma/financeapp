@@ -1,10 +1,14 @@
 package com.financapp.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 @Table(name="tb_user")
@@ -26,6 +30,11 @@ public class Usuarios {
     @NotBlank(message = "Senha é obrigatória")
     @Size(min = 8, max = 128, message = "A senha deve conter entre 8 e 128 caracteres.")
     private String senha;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("usuario")
+    private List<Conta> contas;
+
 
     //getters e setters
 
@@ -59,5 +68,13 @@ public class Usuarios {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setContas(List<Conta> contas) {
+        this.contas = contas;
+    }
+
+    public List<Conta> getContas(List<Conta> contas) {
+        return contas;
     }
 }
