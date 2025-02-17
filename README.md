@@ -25,10 +25,17 @@ Atualmente, a aplicação possui funcionalidades para gerenciar usuários, permi
 - **PATCH /usuarios/{id}**: Atualiza o nome, email e senha de um usuário.
 - **DELETE /usuarios/{id}**: Deleta um usuário pelo ID.
 
-## Próximas Funcionalidades
+## Conta
 
-### Conta
-Entidade Conta: A criação de contas bancárias, cartões de crédito e outros tipos de contas será implementada, com atributos como nome, tipo, saldo_inicial e usuario_id.
+- **GET /contas**: Retorna todas as contas cadastradas.
+- **GET /contas/{id}**: Retorna uma conta específica, identificada pelo ID.
+- **GET /contas/usuario/{usuarioId}**: Retorna todas as contas associadas a um usuário pelo seu ID.
+- **GET /contas/usuario/{usuarioId}/nome/{nome}**: Retorna todas as contas associadas a um usuário e que contenham o nome fornecido (ignora case-sensitive).
+- **POST /contas/usuario/{usuarioId}**: Cria uma nova conta associada a um usuário.
+- **PATCH /contas/conta/{id}**: Atualiza os dados de uma conta existente (atualmente, apenas o nome pode ser alterado).
+
+
+## Próximas Funcionalidades
 
 ### Movimentação
 Entidade Movimentação: Implementar movimentações financeiras (entrada e saída), com controle de parcelas e categoria.
