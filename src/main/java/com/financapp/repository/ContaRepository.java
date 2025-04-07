@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ContaRepository extends JpaRepository<Conta, Long> {
-    List<Conta> findAllByNomeContainingIgnoreCase(String nome);
     List<Conta> findAllByUsuarioId(Long usuarioId);
     List<Conta> findAllByNomeContainingIgnoreCaseAndUsuarioId(String nome, Long usuarioId);
 }

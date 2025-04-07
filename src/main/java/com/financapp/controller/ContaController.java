@@ -49,7 +49,7 @@ public class ContaController         {
         if (contas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Retorna 404 se não encontrar contas
         } else {
-            return ResponseEntity.ok(contas); // Retorna 200 OK com a lista de contas
+            return ResponseEntity.ok(contas);
         }
     }
 
@@ -59,9 +59,9 @@ public class ContaController         {
         List<Conta> contas = contaRepository.findAllByNomeContainingIgnoreCaseAndUsuarioId(nome, usuarioId);
 
         if (contas.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Retorna 404 se não encontrar contas
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } else {
-            return ResponseEntity.ok(contas); // Retorna 200 OK com a lista de contas
+            return ResponseEntity.ok(contas);
         }
     }
 
@@ -74,7 +74,7 @@ public class ContaController         {
 
 
         if (!usuarioOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Retorna 404 se o usuário não existir
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         Usuarios usuario = usuarioOptional.get();
@@ -94,22 +94,10 @@ public class ContaController         {
             if (updates.containsKey("nome")) {
                 conta.setNome((String) updates.get("nome"));
             }
-
-            // Não permite alteração de 'tipo' e 'saldoInicial', então nada é feito para esses campos.
-
-            // Salva a conta com as alterações
             Conta updatedConta = contaRepository.save(conta);
-
-            // Retorna a conta atualizada com status 200 OK
             return ResponseEntity.ok(updatedConta);
-        }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build()); // Retorna 404 se a conta não existir
+        }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
-
-
-
-
-
-
 
 
 }
