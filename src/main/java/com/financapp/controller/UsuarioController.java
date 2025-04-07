@@ -41,9 +41,9 @@ public class UsuarioController {
         List<Usuarios> usuarios = usuarioRepository.findAllByNomeContainingIgnoreCase(nome);
 
         if (usuarios.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // Retorna 404 se a lista estiver vazia
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } else {
-            return ResponseEntity.ok(usuarios); // Retorna 200 OK se a lista não estiver vazia
+            return ResponseEntity.ok(usuarios);
         }
     }
 
