@@ -1,13 +1,13 @@
-package com.financapp.repository;
+    package com.financapp.repository;
 
-import com.financapp.model.Conta;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+    import com.financapp.model.Conta;
+    import org.springframework.data.jpa.repository.JpaRepository;
+    import org.springframework.stereotype.Repository;
 
-import java.util.List;
+    import java.util.List;
 
-@Repository
-public interface ContaRepository extends JpaRepository<Conta, Long> {
-    List<Conta> findAllByUsuarioId(Long usuarioId);
-    List<Conta> findAllByNomeContainingIgnoreCaseAndUsuarioId(String nome, Long usuarioId);
-}
+    @Repository
+    public interface ContaRepository extends JpaRepository<Conta, Long> {
+        List<Conta> findAllByUsuarioId(Long usuarioId);
+        List<Conta> findAllByNomeContainingIgnoreCaseAndUsuarioId(String nome, Long usuarioId);
+    }
