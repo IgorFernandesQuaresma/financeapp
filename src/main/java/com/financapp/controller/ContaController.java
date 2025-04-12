@@ -90,14 +90,21 @@ public class ContaController         {
     @PatchMapping("/conta/{id}")
     public ResponseEntity<Conta> updateConta(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
         return contaRepository.findById(id).map(conta -> {
-            // Verifica se há alteração no campo 'nome'
+
             if (updates.containsKey("nome")) {
                 conta.setNome((String) updates.get("nome"));
             }
+
+            if (updates.containsKey("tipo")) {
+                conta.setTipo((String) updates.get("tipo")); // <- aqui tava o erro
+            }
+
             Conta updatedConta = contaRepository.save(conta);
             return ResponseEntity.ok(updatedConta);
+
         }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+
 
 
 }
