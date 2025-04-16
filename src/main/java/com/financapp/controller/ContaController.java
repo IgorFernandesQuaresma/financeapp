@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -79,7 +80,7 @@ public class ContaController         {
 
         Usuarios usuario = usuarioOptional.get();
         conta.setUsuario(usuario);
-        conta.setSaldoInicial(0);
+        conta.setSaldo(BigDecimal.ZERO);
 
         Conta savedConta = contaRepository.save(conta);
 

@@ -31,10 +31,6 @@ public class Usuarios {
     @Size(min = 8, max = 128, message = "A senha deve conter entre 8 e 128 caracteres.")
     private String senha;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("usuario")
-    private List<Conta> contas;
-
 
     //getters e setters
 
@@ -71,7 +67,6 @@ public class Usuarios {
     }
 
     public void setContas(List<Conta> contas) {
-        this.contas = contas;
     }
 
     public List<Conta> getContas(List<Conta> contas) {
