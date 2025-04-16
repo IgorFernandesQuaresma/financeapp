@@ -72,7 +72,7 @@ public class UsuarioController {
             Usuarios updatedUsuario = usuarioRepository.save(usuario);
             return ResponseEntity.ok(updatedUsuario);
         }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }   
+    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")

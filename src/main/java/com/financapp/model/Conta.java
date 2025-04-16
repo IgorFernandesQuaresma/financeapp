@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -26,17 +27,15 @@ public class Conta {
     @Size(min = 1, max = 100, message = "O tipo deve conter no máximo 100 caracteres.")
     private String tipo;
 
-    private Integer saldoInicial = 0;
-
+    private BigDecimal saldo;
 
     @ManyToOne
     @JsonIgnoreProperties("conta")
     private Usuarios usuario;
 
-
-
-
-    //getters e setters
+    @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("conta")
+    private List<Movimentacao> movimentacoes;
 
     public Long getId() {
         return id;
@@ -62,12 +61,12 @@ public class Conta {
         this.tipo = tipo;
     }
 
-    public Integer getSaldoInicial() {
-        return saldoInicial;
+    public BigDecimal getSaldo() {
+        return saldo;
     }
 
-    public void setSaldoInicial(Integer saldoInicial) {
-        this.saldoInicial = saldoInicial;
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
     }
 
     public Usuarios getUsuario() {
@@ -78,10 +77,12 @@ public class Conta {
         this.usuario = usuario;
     }
 
+    public List<Movimentacao> getMovimentacoes() {
+        return movimentacoes;
+    }
 
-
-
-
-
+    public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+        this.movimentacoes = movimentacoes;
+    }
 
 }
